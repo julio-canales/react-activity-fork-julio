@@ -60,6 +60,12 @@ export default function PokemonList() {
         newPokemon.name = event.target.value;
       }
 
+      function deleteP(index: number) {
+        let newPList = [...listOfPokemons];
+        newPList.splice(index, 1);
+        setListPoke(newPList);
+      }
+
     return  (
     <div>
         <h3>Add Pokemon via PokeAPI</h3>
@@ -74,8 +80,8 @@ export default function PokemonList() {
         <h2>Pokemon List</h2>
         <div className="grid-pokemon">
             {
-                listOfPokemons.map(poke => {
-                    return <PokemonBox key={poke.name} {...poke} />
+                listOfPokemons.map((poke, index) => {
+                    return <PokemonBox key={index} handleDelete={deleteP} pokemon={poke} />
                 })
             }
         </div>
